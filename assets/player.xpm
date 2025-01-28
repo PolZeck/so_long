@@ -2,7 +2,7 @@
 static char *_0496364802346b6e7441e23a190a545qmkecENOG6Nes0RN[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 25 1 ",
-"  c None",
+"  c #39af44",
 ". c black",
 "X c gray3",
 "o c #0C0C0C",
@@ -17,7 +17,7 @@ static char *_0496364802346b6e7441e23a190a545qmkecENOG6Nes0RN[] = {
 "= c gray11",
 "- c #A0A0A0",
 "; c gray64",
-": c #A7A7A7",
+": c red",
 "> c #A9A9A9",
 ", c #AAAAAA",
 "< c gray95",
@@ -26,7 +26,7 @@ static char *_0496364802346b6e7441e23a190a545qmkecENOG6Nes0RN[] = {
 "3 c #FBFBFB",
 "4 c gray99",
 "5 c #FDFDFD",
-"6 c white",
+"6 c #FFDAB9",
 /* pixels */
 "          ............          ",
 "          ............          ",

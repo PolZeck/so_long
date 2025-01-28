@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/28 10:57:35 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/28 16:14:38 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,29 @@ int handle_movement(int keycode, void *param) {
     t_game *game = (t_game *)param;
     int new_x = game->player_x;
     int new_y = game->player_y;
+	int moved = 0; // Indicateur pour vérifier si on a bougé
+
 
     // Vérifier quelle touche est pressée
-    if (keycode == 65307) { // ESC
+    if (keycode == 65307) { // Échap pour quitter proprement
         destroy_textures(game);
         exit(0);
-    } else if (keycode == 'w' || keycode == 'W') // Haut
+    }
+
+    // Détection des touches de mouvement
+    if (keycode == 'w' || keycode == 'W' || keycode == 65362) { // Haut
         new_y--;
-    else if (keycode == 's' || keycode == 'S') // Bas
+        moved = 1;
+    } else if (keycode == 's' || keycode == 'S' || keycode == 65364) { // Bas
         new_y++;
-    else if (keycode == 'a' || keycode == 'A') // Gauche
+        moved = 1;
+    } else if (keycode == 'a' || keycode == 'A' || keycode == 65361) { // Gauche
         new_x--;
-    else if (keycode == 'd' || keycode == 'D') // Droite
+        moved = 1;
+    } else if (keycode == 'd' || keycode == 'D' || keycode == 65363) { // Droite
         new_x++;
+        moved = 1;
+    }
 
     // Vérifier que le joueur ne sort pas des limites de la map
     if (new_x < 0 || new_x >= game->map_width || new_y < 0 || new_y >= game->map_height) {
@@ -46,6 +56,18 @@ int handle_movement(int keycode, void *param) {
         return (0);
     }
 
+    if (game->map[new_y][new_x] == 'E') {
+    if (count_collectibles(game) > 0) {
+        printf("⛔ Il reste encore des collectibles ! (%d restants)\n", count_collectibles(game));
+        return (0);
+    }
+		printf("🎉 Victoire ! Vous avez collecté tous les objets et atteint la sortie en %d déplacements !\n", (game->moves + 1));
+		destroy_textures(game);
+		free_map(game);
+		exit(0);
+	}
+
+
     // Vérifier si c'est un collectible
     if (game->map[new_y][new_x] == 'C') {
         printf("🍎 DEBUG: Collectible ramassé !\n");
@@ -58,13 +80,15 @@ int handle_movement(int keycode, void *param) {
 
     game->player_x = new_x;
     game->player_y = new_y;
-    game->moves++;
+    if (moved)
+	{
+		game->moves++;
+	    printf("✅ DEBUG: Joueur déplacé à (%d, %d), Mouvements: %d\n", game->player_x, game->player_y, game->moves);
+	}
 
-    printf("✅ DEBUG: Joueur déplacé à (%d, %d), Mouvements: %d\n", game->player_x, game->player_y, game->moves);
 
     // Mettre à jour l'affichage
     render_map(game);
 
     return (0);
 }
-
