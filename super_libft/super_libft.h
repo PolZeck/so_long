@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 08:46:57 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/23 13:56:51 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/28 09:09:13 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
+# endif
 
 int		ft_printf(const char *format, ...);
 int		ft_parse_format(char specifier, va_list args);
@@ -32,5 +36,11 @@ int		ft_handle_unsigned(unsigned int num);
 char	*ft_itoa_unsigned(unsigned int num);
 char	*ft_itoa_gnl(int n);
 char	*ft_itoa_base(unsigned long num, int base, int uppercase);
+
+char	*get_next_line(int fd);
+char	*ft_strdup_gnl(const char *s1);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+size_t	ft_strlen_gnl(const char *s);
+int		ft_check_line(char *str);
 
 #endif

@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 12:20:47 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/28 09:56:41 by pledieu          ###   ########lyon.fr   */
+/*   Created: 2025/01/28 08:52:03 by pledieu           #+#    #+#             */
+/*   Updated: 2025/01/28 09:34:58 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-#include "../includes/so_long.h"
+void error_exit(const char *message) {
+    fprintf(stderr, "%s\n", message);
+    exit(1);
+}
 
-int main(int argc, char **argv) {
-    t_game game;
-
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s <fichier_map.ber>\n", argv[0]);
-        return (1);
-    }
-
-    game.moves = 0;
-    init_game(&game, argv[1]);
-
-    return (0);
+void free_map(t_game *game) {
+    int i = 0;
+    while (game->map[i]) free(game->map[i++]);
+    free(game->map);
 }

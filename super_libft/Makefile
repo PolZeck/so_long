@@ -6,7 +6,7 @@
 #    By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 14:33:15 by pledieu           #+#    #+#              #
-#    Updated: 2025/01/23 13:55:18 by pledieu          ###   ########lyon.fr    #
+#    Updated: 2025/01/28 09:06:29 by pledieu          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ SRC =   ft_printf.c\
         ft_handlers2.c\
         ft_parser.c\
         ft_utils2.c\
+		get_next_line.c\
+		get_next_line_utils.c\
 
 OBJ = $(SRC:.c=.o)
 
