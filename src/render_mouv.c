@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/28 16:14:38 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/28 16:19:34 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,10 @@ int handle_movement(int keycode, void *param) {
 		free_map(game);
 		exit(0);
 	}
-
-
-    // Vérifier si c'est un collectible
     if (game->map[new_y][new_x] == 'C') {
         printf("🍎 DEBUG: Collectible ramassé !\n");
         game->map[new_y][new_x] = '0'; // Retirer le collectible
     }
-
-    // Mettre à jour la position du joueur
     game->map[game->player_y][game->player_x] = '0'; // L'ancienne position devient du sol
     game->map[new_y][new_x] = 'P'; // Le joueur prend sa nouvelle position
 
@@ -85,9 +80,6 @@ int handle_movement(int keycode, void *param) {
 		game->moves++;
 	    printf("✅ DEBUG: Joueur déplacé à (%d, %d), Mouvements: %d\n", game->player_x, game->player_y, game->moves);
 	}
-
-
-    // Mettre à jour l'affichage
     render_map(game);
 
     return (0);
