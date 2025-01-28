@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:16:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/28 09:48:29 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/28 11:04:59 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void    load_textures(t_game *game);
 void    destroy_textures(t_game *game);
 void start_game(t_game *game);
 int key_press_wrapper(int keycode, void *param);
+void set_player_position(t_game *game);
 
 
 

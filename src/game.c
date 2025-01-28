@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 08:51:47 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/28 09:53:39 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/28 11:08:34 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void init_game(t_game *game, char *map_file) {
         error_exit("Erreur : Impossible d'initialiser MiniLibX");
 
     load_map(map_file, game);
+	set_player_position(game);
+
     validate_map(game);
 
     game->win = mlx_new_window(game->mlx, game->map_width * TILE_SIZE, game->map_height * TILE_SIZE, "so_long");
