@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:16:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/28 13:29:32 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/29 14:04:27 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdio.h>
 # include <string.h>
 
-# define TILE_SIZE 32
+# define T_SIZE 32
 
 typedef struct s_game {
     void    *mlx;
@@ -42,6 +42,20 @@ typedef struct s_game {
     void    *img_floor;
 } t_game;
 
+typedef struct s_counts
+{
+    int player;
+    int exit;
+    int collectible;
+} t_counts;
+
+typedef struct s_position
+{
+    int x;
+    int y;
+} t_position;
+
+
 // Prototypes des fonctions
 void    load_map(const char *filename, t_game *game);
 void    validate_map(t_game *game);
@@ -52,16 +66,14 @@ void    render_map(t_game *game);
 int handle_movement(int keycode, void *param);
 void    load_textures(t_game *game);
 void    destroy_textures(t_game *game);
-void start_game(t_game *game);
 int key_press_wrapper(int keycode, void *param);
 void set_player_position(t_game *game);
 int count_collectibles(t_game *game);
 void check_map_walls(t_game *game);
 int close_game(t_game *game);
-void flood_fill(char **map, int x, int y, int width, int height);
-int check_valid_path(t_game *game);
-
-
-
+void check_valid_path(t_game *game);
+void	check_map_walls(t_game *game);
+void	free_map_copy(char **map, int height);
+void	move_on_window(t_game *game);
 
 #endif

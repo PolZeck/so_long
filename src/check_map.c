@@ -6,104 +6,139 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:06 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/29 07:41:26 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/29 09:05:33 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void validate_map(t_game *game) 
+/**
+ * @brief Counts occurrences of 'P', 'E', and 'C' in the map.
+ * 
+ * @param game The game structure.
+ * @param pos The current position in the map.
+ * @param counts Structure tracking counts of player, exit, and collectibles.
+ */
+void	count_elements(t_game *game, t_position pos, t_counts *counts)
 {
-    int i, j;
-    int player_count = 0; // ✅ Nombre de 'P' trouvés
-    int exit_count = 0;   // ✅ Nombre de 'E' trouvés
-    int collectible_count = 0; // ✅ Nombre de 'C' trouvés
+	char	tile;
 
-    check_map_walls(game); // ✅ Vérifie que la carte est bien entourée de murs
-
-    printf("✅ DEBUG: La carte est jouable !\n");
-
-    if (!game->map) {
-        error_exit("Erreur : game->map est NULL !");
-    }
-
-    for (i = 0; i < game->map_height; i++) {
-        if (!game->map[i]) {
-            ft_printf("Erreur : Ligne %d est NULL !\n", i);
-            error_exit("Erreur : Accès mémoire invalide !");
-        }
-
-        int line_length = ft_strlen(game->map[i]); // Longueur réelle SANS '\n'
-
-        ft_printf("✅ DEBUG: Validation - Ligne %d : Longueur %d (attendue: %d) [%s]\n",
-               i, line_length, game->map_width, game->map[i]);
-
-        if (line_length != game->map_width) {
-            ft_printf("Erreur : Ligne %d a une longueur différente (%d au lieu de %d)\n",
-                   i, line_length, game->map_width);
-            error_exit("Erreur : La carte n'est pas rectangulaire !");
-        }
-
-        for (j = 0; j < line_length; j++) {
-            char tile = game->map[i][j];
-
-            // ✅ Vérifie que chaque case contient un caractère valide
-            if (tile != '1' && tile != '0' && tile != 'P' && tile != 'C' && tile != 'E') {
-                ft_printf("Caractère invalide détecté : '%c' (Code ASCII: %d) à la ligne %d, colonne %d\n",
-                       tile, tile, i, j);
-                error_exit("Erreur : Caractère invalide dans la carte !");
-            }
-
-            // ✅ Compte le nombre de 'P' (joueur)
-            if (tile == 'P')
-                player_count++;
-
-            // ✅ Compte le nombre de 'E' (sortie)
-            if (tile == 'E')
-                exit_count++;
-
-            // ✅ Compte le nombre de 'C' (collectibles)
-            if (tile == 'C')
-                collectible_count++;
-        }
-    }
-
-    // ✅ Vérification du nombre de 'P' (doit être exactement 1)
-    if (player_count != 1) {
-        ft_printf("Erreur : Il doit y avoir exactement un seul 'P', trouvé : %d\n", player_count);
-        error_exit("Erreur : Nombre de joueurs incorrect !");
-    }
-
-    // ✅ Vérification du nombre de 'E' (doit être exactement 1)
-    if (exit_count != 1) {
-        ft_printf("Erreur : Il doit y avoir exactement une seule sortie 'E', trouvé : %d\n", exit_count);
-        error_exit("Erreur : Nombre de sorties incorrect !");
-    }
-
-    // ✅ Vérification qu'il y a au moins un 'C'
-    if (collectible_count < 1) {
-        ft_printf("Erreur : Il doit y avoir au moins un collectible 'C', trouvé : %d\n", collectible_count);
-        error_exit("Erreur : Aucun collectible !");
-    }
-    printf("✅ DEBUG : La carte contient 1 joueur (P), 1 sortie (E) et %d collectible(s) (C).\n", collectible_count);
+	tile = game->map[pos.y][pos.x];
+	if (tile == 'P')
+		counts->player++;
+	if (tile == 'E')
+		counts->exit++;
+	if (tile == 'C')
+		counts->collectible++;
 }
 
+/**
+ * @brief Validates characters in the map and updates count.
+ * 
+ * @param game The game structure.
+ * @param pos The current position in the map.
+ * @param counts Structure tracking counts of player, exit, and collectibles.
+ */
+void	validate_character(t_game *game, t_position pos, t_counts *counts)
+{
+	char	tile;
 
+	tile = game->map[pos.y][pos.x];
+	if (tile != '1' && tile != '0' && tile != 'P'
+		&& tile != 'C' && tile != 'E')
+	{
+		ft_printf("Invalid character: '%c' (ASCII: %d) at line %d, col %d\n",
+			tile, tile, pos.y, pos.x);
+		error_exit("Error: Invalid character in the map!");
+	}
+	count_elements(game, pos, counts);
+}
 
-void check_map_walls(t_game *game) {
-    // Vérifier la première et la dernière ligne
-    for (int x = 0; x < game->map_width; x++) {
-        if (game->map[0][x] != '1' || game->map[game->map_height - 1][x] != '1') {
-            printf("Error\n");
-            exit(1);
-        }
-    }
+/**
+ * @brief Checks if the map is rectangular.
+ * 
+ * @param game The game structure.
+ */
+void	validate_dimensions(t_game *game)
+{
+	int	i;
+	int	line_length;
 
-    // Vérifier la première et la dernière colonne de chaque ligne
-    for (int y = 0; y < game->map_height; y++) {
-        if (game->map[y][0] != '1' || game->map[y][game->map_width - 1] != '1') {
-            printf("Error\n");
-            exit(1);
-        }
-    }
+	i = 0;
+	while (i < game->map_height)
+	{
+		if (!game->map[i])
+		{
+			ft_printf("Error\n: Line %d is NULL!\n", i);
+			error_exit("Error\n: Invalid memory access!");
+		}
+		line_length = ft_strlen(game->map[i]);
+		ft_printf("✅Validation - Line %d : Length %d (expected: %d) [%s]\n",
+			i, line_length, game->map_width, game->map[i]);
+		if (line_length != game->map_width)
+		{
+			ft_printf("Error\n: Line %d has incorrect length\n", i);
+			error_exit("Error\n: The map is not rectangular!");
+		}
+		i++;
+	}
+}
+
+/**
+ * @brief Checks if the map has exactly one 'P', one 'E', and at least one 'C'.
+ * 
+ * @param counts Structure tracking counts of player, exit, and collectibles.
+ */
+void	validate_counts(t_counts counts)
+{
+	if (counts.player != 1)
+	{
+		ft_printf("Error\n: Must have exactly one 'P', found: %d\n",
+			counts.player);
+		error_exit("Error\n: Incorrect number of players!");
+	}
+	if (counts.exit != 1)
+	{
+		ft_printf("Error\n: Must have exactly one exit 'E', found: %d\n",
+			counts.exit);
+		error_exit("Error\n: Incorrect number of exits!");
+	}
+	if (counts.collectible < 1)
+	{
+		ft_printf("Error\n: Must have at least one collectible, found: %d\n",
+			counts.collectible);
+		error_exit("Error\n: No collectibles found!");
+	}
+}
+
+/**
+ * @brief Validates the map (walls, dimensions, characters, required elements).
+ * 
+ * @param game The game structure.
+ */
+void	validate_map(t_game *game)
+{
+	int			i;
+	int			j;
+	t_counts	counts;
+	t_position	pos;
+
+	counts.player = 0;
+	counts.exit = 0;
+	counts.collectible = 0;
+	check_map_walls(game);
+	validate_dimensions(game);
+	i = -1;
+	while (++i < game->map_height)
+	{
+		j = -1;
+		while (++j < game->map_width)
+		{
+			pos.x = j;
+			pos.y = i;
+			validate_character(game, pos, &counts);
+		}
+	}
+	validate_counts(counts);
+	check_valid_path(game);
 }

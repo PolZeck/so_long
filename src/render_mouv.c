@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/28 16:34:49 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/29 10:00:51 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ int handle_movement(int keycode, void *param) {
     if (moved)
 	{
 		game->moves++;
-	    printf("Joueur déplacé à (%d, %d), Mouvements: %d\n", game->player_x, game->player_y, game->moves);
+		// write(1,"\033[H\033[J", 6);
+	    ft_printf("\033[H\033[JJoueur déplacé à (%d, %d), Mouvements: %d\n", game->player_x, game->player_y, game->moves);
 	}
     render_map(game);
 

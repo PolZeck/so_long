@@ -12,7 +12,7 @@ MLX_DIR = minilibx-linux
 SUPER_LIBFT = super_libft
 
 # Fichiers source et objets
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/game.c $(SRC_DIR)/map.c $(SRC_DIR)/utils.c $(SRC_DIR)/check_map.c $(SRC_DIR)/render.c $(SRC_DIR)/set.c $(SRC_DIR)/render_mouv.c $(SRC_DIR)/texture.c
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/game.c $(SRC_DIR)/map.c $(SRC_DIR)/utils.c $(SRC_DIR)/check_map.c $(SRC_DIR)/render.c $(SRC_DIR)/set.c $(SRC_DIR)/render_mouv.c $(SRC_DIR)/texture.c $(SRC_DIR)/flood_fill.c $(SRC_DIR)/check_map_walls.c
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # Librairies
