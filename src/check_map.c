@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:06 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/28 13:50:30 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/29 07:41:26 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 void validate_map(t_game *game) 
 {
     int i, j;
-	check_map_walls(game); // ✅ Vérifie que la carte est bien entourée de murs
+    int player_count = 0; // ✅ Nombre de 'P' trouvés
+    int exit_count = 0;   // ✅ Nombre de 'E' trouvés
+    int collectible_count = 0; // ✅ Nombre de 'C' trouvés
 
+    check_map_walls(game); // ✅ Vérifie que la carte est bien entourée de murs
 
     printf("✅ DEBUG: La carte est jouable !\n");
 
@@ -42,17 +45,50 @@ void validate_map(t_game *game)
         }
 
         for (j = 0; j < line_length; j++) {
-            if (game->map[i][j] != '1' && game->map[i][j] != '0' &&
-                game->map[i][j] != 'P' && game->map[i][j] != 'C' &&
-                game->map[i][j] != 'E') {
+            char tile = game->map[i][j];
+
+            // ✅ Vérifie que chaque case contient un caractère valide
+            if (tile != '1' && tile != '0' && tile != 'P' && tile != 'C' && tile != 'E') {
                 ft_printf("Caractère invalide détecté : '%c' (Code ASCII: %d) à la ligne %d, colonne %d\n",
-                       game->map[i][j], game->map[i][j], i, j);
+                       tile, tile, i, j);
                 error_exit("Erreur : Caractère invalide dans la carte !");
             }
+
+            // ✅ Compte le nombre de 'P' (joueur)
+            if (tile == 'P')
+                player_count++;
+
+            // ✅ Compte le nombre de 'E' (sortie)
+            if (tile == 'E')
+                exit_count++;
+
+            // ✅ Compte le nombre de 'C' (collectibles)
+            if (tile == 'C')
+                collectible_count++;
         }
     }
-	
+
+    // ✅ Vérification du nombre de 'P' (doit être exactement 1)
+    if (player_count != 1) {
+        ft_printf("Erreur : Il doit y avoir exactement un seul 'P', trouvé : %d\n", player_count);
+        error_exit("Erreur : Nombre de joueurs incorrect !");
+    }
+
+    // ✅ Vérification du nombre de 'E' (doit être exactement 1)
+    if (exit_count != 1) {
+        ft_printf("Erreur : Il doit y avoir exactement une seule sortie 'E', trouvé : %d\n", exit_count);
+        error_exit("Erreur : Nombre de sorties incorrect !");
+    }
+
+    // ✅ Vérification qu'il y a au moins un 'C'
+    if (collectible_count < 1) {
+        ft_printf("Erreur : Il doit y avoir au moins un collectible 'C', trouvé : %d\n", collectible_count);
+        error_exit("Erreur : Aucun collectible !");
+    }
+    printf("✅ DEBUG : La carte contient 1 joueur (P), 1 sortie (E) et %d collectible(s) (C).\n", collectible_count);
 }
+
+
 
 void check_map_walls(t_game *game) {
     // Vérifier la première et la dernière ligne
