@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:28 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/30 11:33:25 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 17:06:44 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	render_map(t_game *game)
 	int	y;
 	int	x;
 
-	y = -1;
-	while (++y < game->map_height)
+	y = 0;
+	while (y < game->map_height)
     {
-        x = -1;
-        while (++x < game->map_width)
+        x = 0;
+        while (x < game->map_width)
         {
             if (game->map[y][x] == '1')
                 mlx_put_image_to_window(game->mlx, game->win, game->img_wall, x * T_SIZE, y * T_SIZE);
@@ -34,8 +34,10 @@ void	render_map(t_game *game)
             else if (game->map[y][x] == 'E')
                 mlx_put_image_to_window(game->mlx, game->win, game->img_exit, x * T_SIZE, y * T_SIZE);
             else if (game->map[y][x] == 'M') // 🔥 Affichage des ennemis !
-                mlx_put_image_to_window(game->mlx, game->win, game->img_enemy, x * T_SIZE, y * T_SIZE);    
+                mlx_put_image_to_window(game->mlx, game->win, game->img_enemy, x * T_SIZE, y * T_SIZE);
+			x++;    
         }
+		y++;
     }
 	move_on_window(game);
 }

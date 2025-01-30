@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:11 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/30 11:15:50 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 14:42:38 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,49 +57,4 @@ void	set_player_position(t_game *game)
 		y++;
 	}
 	error_exit("Erreur : Joueur non trouvé dans la carte !");
-}
-#include "../includes/so_long.h"
-
-// Fonction pour ajouter un ennemi à la liste chaînée
-void add_enemy(t_game *game, int x, int y)
-{
-    t_enemy *new_enemy = malloc(sizeof(t_enemy));
-    if (!new_enemy)
-        error_exit("Erreur : Allocation mémoire pour un ennemi");
-
-    new_enemy->x = x;
-    new_enemy->y = y;
-    new_enemy->next = game->enemies;
-    game->enemies = new_enemy;
-}
-
-// Fonction qui parcourt la map et place les ennemis en mémoire
-void set_enemies(t_game *game)
-{
-    int x, y;
-
-    y = 0;
-    while (y < game->map_height)
-    {
-        x = 0;
-        while (x < game->map_width)
-        {
-            if (game->map[y][x] == 'M') // 'M' représente un ennemi sur la carte
-                add_enemy(game, x, y);
-            x++;
-        }
-        y++;
-    }
-}
-
-// Fonction pour libérer tous les ennemis
-void free_enemies(t_game *game)
-{
-    t_enemy *temp;
-    while (game->enemies)
-    {
-        temp = game->enemies;
-        game->enemies = game->enemies->next;
-        free(temp);
-    }
 }

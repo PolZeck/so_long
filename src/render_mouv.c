@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/30 11:29:49 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 17:32:14 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ int handle_movement(int keycode, void *param) {
     }
 
     // Détection des touches de mouvement
-    if (keycode == 'w' || keycode == 'W' || keycode == 65362) { // Haut
+    if (keycode == 'w' ||keycode == 65362) { // Haut
         new_y--;
         moved = 1;
-    } else if (keycode == 's' || keycode == 'S' || keycode == 65364) { // Bas
+    } else if (keycode == 's' || keycode == 65364) { // Bas
         new_y++;
         moved = 1;
-    } else if (keycode == 'a' || keycode == 'A' || keycode == 65361) { // Gauche
+    } else if (keycode == 'a' || keycode == 65361) { // Gauche
         new_x--;
         moved = 1;
-    } else if (keycode == 'd' || keycode == 'D' || keycode == 65363) { // Droite
+    } else if (keycode == 'd' ||keycode == 65363) { // Droite
         new_x++;
         moved = 1;
     }
@@ -87,7 +87,9 @@ int handle_movement(int keycode, void *param) {
 		// write(1,"\033[H\033[J", 6);
 	    ft_printf("\033[H\033[JJoueur déplacé à (%d, %d), Mouvements: %d\n", game->player_x, game->player_y, game->moves);
 	}
-    render_map(game);
+	if (keycode == 'w' ||keycode == 65362 || keycode == 's' || keycode == 65364 || keycode == 'a' || keycode == 65361 || keycode == 'd' ||keycode == 65363)
+		move_enemies(game);
+	render_map(game);
 
     return (0);
 }
