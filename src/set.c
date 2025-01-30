@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:11 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/30 14:42:38 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 18:37:05 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ void	load_textures(t_game *game)
 	game->img_collectible
 		= mlx_xpm_file_to_image(game->mlx, "assets/collectible.xpm", &w, &h);
 	game->img_exit
-		= mlx_xpm_file_to_image(game->mlx, "assets/exit.xpm", &w, &h);
+		= mlx_xpm_file_to_image(game->mlx, "assets/exit_closed.xpm", &w, &h);
 	game->img_floor
 		= mlx_xpm_file_to_image(game->mlx, "assets/floor.xpm", &w, &h);
 	game->img_enemy
 		= mlx_xpm_file_to_image(game->mlx, "assets/enemy.xpm", &w, &h);
+
 	if (!game->img_wall || !game->img_player || !game->img_collectible
 		|| !game->img_exit || !game->img_floor || !game->img_enemy )
 		error_exit("Erreur : Impossible de charger une ou plusieurs textures.");

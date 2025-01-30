@@ -6,26 +6,27 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/30 17:32:14 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 19:07:22 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int key_press_wrapper(int keycode, void *param) {
-    return handle_movement(keycode, param);
-}
-
-int handle_movement(int keycode, void *param) {
+int handle_movement(int keycode, void *param)
+{
     t_game *game = (t_game *)param;
     int new_x = game->player_x;
     int new_y = game->player_y;
 	int moved = 0; // Indicateur pour vérifier si on a bougé
+	int	h;
+	int	w;
 
 
     // Vérifier quelle touche est pressée
-    if (keycode == 65307) { // Échap pour quitter proprement
+    if (keycode == 65307) {
         destroy_textures(game);
+		free_map(game);
+		free_enemies(game);
         exit(0);
     }
 
@@ -61,18 +62,29 @@ int handle_movement(int keycode, void *param) {
         printf("💀 GAME OVER ! Vous avez été attrapé par un ennemi !\n");
         exit(1);
     }
-
-    if (game->map[new_y][new_x] == 'E') {
-    if (count_collectibles(game) > 0) {
-        printf("⛔ Il reste encore des collectibles ! (%d restants)\n", count_collectibles(game));
-        return (0);
+	if (count_collectibles(game) == 0)
+	{
+			if (game->img_exit)
+		mlx_destroy_image(game->mlx, game->img_exit);
+		game->img_exit
+			= mlx_xpm_file_to_image(game->mlx, "assets/exit.xpm", &w, &h);
     }
+	if (game->map[new_y][new_x] == 'E')
+	{
+    	if (count_collectibles(game) > 0)
+		{
+			printf("⛔ Il reste encore des collectibles ! (%d restants)\n", count_collectibles(game));
+			return (0);
+   		}
 		printf("🎉 Victoire ! Vous avez collecté tous les objets et atteint la sortie en %d déplacements !\n", (game->moves + 1));
+				free_enemies(game);
+
 		destroy_textures(game);
 		free_map(game);
 		exit(0);
 	}
-    if (game->map[new_y][new_x] == 'C') {
+    if (game->map[new_y][new_x] == 'C')
+	{
         printf("🍎 DEBUG: Collectible ramassé !\n");
         game->map[new_y][new_x] = '0'; // Retirer le collectible
     }

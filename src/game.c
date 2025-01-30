@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 08:51:47 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/30 15:05:53 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 18:55:20 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_game(t_game *game, char *map_file)
 		error_exit("Erreur : Impossible de créer la fenêtre");
 	load_textures(game);
 	render_map(game);
-	mlx_key_hook(game->win, key_press_wrapper, game);
+	mlx_key_hook(game->win, handle_movement, game);
 	mlx_hook(game->win, 17, 0, close_game, game);
 	mlx_loop(game->mlx);
 }

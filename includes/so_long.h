@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:16:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/30 16:48:17 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 18:56:03 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_game {
     void    *img_exit;
     void    *img_floor;
     void    *img_enemy;
+	void	*img_exit_closed;
 	t_enemy *enemies;
 } t_game;
 
@@ -76,7 +77,6 @@ void	render_map(t_game *game);
 int		handle_movement(int keycode, void *param);
 void	load_textures(t_game *game);
 void	destroy_textures(t_game *game);
-int		key_press_wrapper(int keycode, void *param);
 void	set_player_position(t_game *game);
 int		count_collectibles(t_game *game);
 void	check_map_walls(t_game *game);
@@ -91,6 +91,5 @@ void	free_enemies(t_game *game);
 
 void free_map_copy(char **map, int height);
 void move_enemies(t_game *game);
-void load_next_map(t_game *game);
 
 #endif
