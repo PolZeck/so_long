@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 08:51:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/29 13:55:33 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 11:10:47 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ void	load_map(const char *filename, t_game *game)
 	game->map[i] = NULL;
 	game->map_height = i;
 	close(fd);
+
+	set_enemies(game); 
 	printf("✅ DEBUG: Carte chargée avec succès, hauteur: %d, largeur: %d\n", game->map_height, game->map_width);
 }

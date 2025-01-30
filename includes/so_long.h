@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:16:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/29 14:04:27 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 12:35:54 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 
 # define T_SIZE 32
 
+
+typedef struct s_enemy
+{
+    int x;
+    int y;
+    struct s_enemy *next;
+} t_enemy;
+
 typedef struct s_game {
     void    *mlx;
     void    *win;
@@ -40,6 +48,9 @@ typedef struct s_game {
     void    *img_collectible;
     void    *img_exit;
     void    *img_floor;
+    void    *img_enemy;
+
+	t_enemy *enemies;
 } t_game;
 
 typedef struct s_counts
@@ -75,5 +86,11 @@ void check_valid_path(t_game *game);
 void	check_map_walls(t_game *game);
 void	free_map_copy(char **map, int height);
 void	move_on_window(t_game *game);
+void set_enemies(t_game *game);
+void add_enemy(t_game *game, int x, int y);
+void free_enemies(t_game *game);
+
+void free_map_copy(char **map, int height);
+
 
 #endif

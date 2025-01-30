@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/29 10:00:51 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 11:29:49 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ int handle_movement(int keycode, void *param) {
         return (0);
     }
 
+	if (game->map[new_y][new_x] == 'M') // 🚨 Collision avec un ennemi !
+    {
+        printf("💀 GAME OVER ! Vous avez été attrapé par un ennemi !\n");
+        exit(1);
+    }
+
     if (game->map[new_y][new_x] == 'E') {
     if (count_collectibles(game) > 0) {
         printf("⛔ Il reste encore des collectibles ! (%d restants)\n", count_collectibles(game));
@@ -85,3 +91,5 @@ int handle_movement(int keycode, void *param) {
 
     return (0);
 }
+
+

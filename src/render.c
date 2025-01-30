@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:28 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/29 14:04:36 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 11:33:25 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@ void	render_map(t_game *game)
 	int	y;
 	int	x;
 
-	y = 0;
-	while (y < game->map_height)
-	{
-		x = 0;
-		while (x < game->map_width)
-		{
-			if (game->map[y][x] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_wall, x * T_SIZE, y * T_SIZE);
-			else if (game->map[y][x] == '0')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_floor, x * T_SIZE, y * T_SIZE);
-			else if (game->map[y][x] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_player, x * T_SIZE, y * T_SIZE);
-			else if (game->map[y][x] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_collectible, x * T_SIZE, y * T_SIZE);
-			else if (game->map[y][x] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_exit, x * T_SIZE, y * T_SIZE);
-			x++;
-		}
-		y++;
-	}
+	y = -1;
+	while (++y < game->map_height)
+    {
+        x = -1;
+        while (++x < game->map_width)
+        {
+            if (game->map[y][x] == '1')
+                mlx_put_image_to_window(game->mlx, game->win, game->img_wall, x * T_SIZE, y * T_SIZE);
+            else if (game->map[y][x] == '0')
+                mlx_put_image_to_window(game->mlx, game->win, game->img_floor, x * T_SIZE, y * T_SIZE);
+            else if (game->map[y][x] == 'P')
+                mlx_put_image_to_window(game->mlx, game->win, game->img_player, x * T_SIZE, y * T_SIZE);
+            else if (game->map[y][x] == 'C')
+                mlx_put_image_to_window(game->mlx, game->win, game->img_collectible, x * T_SIZE, y * T_SIZE);
+            else if (game->map[y][x] == 'E')
+                mlx_put_image_to_window(game->mlx, game->win, game->img_exit, x * T_SIZE, y * T_SIZE);
+            else if (game->map[y][x] == 'M') // 🔥 Affichage des ennemis !
+                mlx_put_image_to_window(game->mlx, game->win, game->img_enemy, x * T_SIZE, y * T_SIZE);    
+        }
+    }
 	move_on_window(game);
 }
 

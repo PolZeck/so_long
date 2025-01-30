@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:06 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/29 09:05:33 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 11:18:01 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	validate_character(t_game *game, t_position pos, t_counts *counts)
 
 	tile = game->map[pos.y][pos.x];
 	if (tile != '1' && tile != '0' && tile != 'P'
-		&& tile != 'C' && tile != 'E')
+		&& tile != 'C' && tile != 'E' && tile != 'M')
 	{
 		ft_printf("Invalid character: '%c' (ASCII: %d) at line %d, col %d\n",
 			tile, tile, pos.y, pos.x);
