@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:20:47 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/30 16:46:05 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/31 06:46:36 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int	main(int ac, char **av)
 	}
 	game.moves = 0;
 	init_game(&game, av[1]);
-	close_game(&game); 
+	close_game(&game);
 	return (0);
 }

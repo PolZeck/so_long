@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 08:52:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/30 12:38:30 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/31 07:47:42 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,21 @@ void	error_exit(const char *message)
 	exit(1);
 }
 
-void free_map(t_game *game)
+void	free_map(t_game *game)
 {
-    int i = 0;
+	int	i;
 
-    if (!game->map)
-        return;
-    
-    while (i < game->map_height)
-    {
-        free(game->map[i]);
-        i++;
-    }
-    free(game->map);
-    game->map = NULL;
+	i = 0;
+	if (!game->map)
+		return ;
+	while (i < game->map_height)
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
+	game->map = NULL;
 }
-
 
 int	count_collectibles(t_game *game)
 {

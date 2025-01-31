@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:15:05 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/30 12:35:39 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/31 06:45:51 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ char	**copy_map(char **original, int height)
 	return (copy);
 }
 
-void	get_player_and_collectibles(t_game *game, t_position *player, t_counts *counts)
+void	get_player_and_collectibles(t_game *game, t_position *player,
+		t_counts *counts)
 {
 	int	y;
 	int	x;
@@ -114,4 +115,3 @@ void	check_valid_path(t_game *game)
 	validate_flood_result(&counts);
 	free_map_copy(map_copy, game->map_height);
 }
-
