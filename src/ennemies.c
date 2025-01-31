@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:51:41 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/31 07:39:46 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/31 09:06:09 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,7 @@ void	set_enemies(t_game *game)
 		while (x < game->map_width)
 		{
 			if (game->map[y][x] == 'M')
-			{
-				ft_printf("M détecté dans la map à (x=%d, y=%d)\n", x, y);
 				add_enemy(game, x, y);
-			}
 			x++;
 		}
 		y++;

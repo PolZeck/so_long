@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:06 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/30 11:18:01 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/31 09:05:52 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ void	validate_dimensions(t_game *game)
 			error_exit("Error\n: Invalid memory access!");
 		}
 		line_length = ft_strlen(game->map[i]);
-		ft_printf("✅Validation - Line %d : Length %d (expected: %d) [%s]\n",
-			i, line_length, game->map_width, game->map[i]);
 		if (line_length != game->map_width)
 		{
 			ft_printf("Error\n: Line %d has incorrect length\n", i);
@@ -89,25 +87,27 @@ void	validate_dimensions(t_game *game)
  * 
  * @param counts Structure tracking counts of player, exit, and collectibles.
  */
-void	validate_counts(t_counts counts)
+void	validate_counts(t_counts *counts, t_game *game)
 {
-	if (counts.player != 1)
+	if (!game)
+		error_exit("Erreur : Game structure non initialisée!");
+	if (counts->player != 1 || counts->exit != 1 || counts->collectible < 1)
 	{
-		ft_printf("Error\n: Must have exactly one 'P', found: %d\n",
-			counts.player);
-		error_exit("Error\n: Incorrect number of players!");
-	}
-	if (counts.exit != 1)
-	{
-		ft_printf("Error\n: Must have exactly one exit 'E', found: %d\n",
-			counts.exit);
-		error_exit("Error\n: Incorrect number of exits!");
-	}
-	if (counts.collectible < 1)
-	{
-		ft_printf("Error\n: Must have at least one collectible, found: %d\n",
-			counts.collectible);
-		error_exit("Error\n: No collectibles found!");
+		if (counts->player != 1)
+			ft_printf("Error\n	-> Must have exactly one 'P', found: %d\n",
+				counts->player);
+		if (counts->exit != 1)
+			ft_printf("Error\n	-> Must have exactly one 'E', found: %d\n",
+				counts->exit);
+		if (counts->collectible != 1)
+			ft_printf("Error\n	-> Must have a least one 'C', found: %d\n",
+				counts->collectible);
+		game->win = NULL;
+		load_textures(game);
+		destroy_textures(game);
+		free_map(game);
+		free_enemies(game);
+		error_exit("Error\n	-> Incorrect Map !");
 	}
 }
 
@@ -123,6 +123,8 @@ void	validate_map(t_game *game)
 	t_counts	counts;
 	t_position	pos;
 
+	if (!game || !game->map)
+		error_exit("Erreur : Game structure ou map non initialisée!");
 	counts.player = 0;
 	counts.exit = 0;
 	counts.collectible = 0;
@@ -139,6 +141,6 @@ void	validate_map(t_game *game)
 			validate_character(game, pos, &counts);
 		}
 	}
-	validate_counts(counts);
+	validate_counts(&counts, game);
 	check_valid_path(game);
 }

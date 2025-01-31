@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:34:24 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/31 07:46:43 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/01/31 09:07:44 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	destroy_textures(t_game *game)
 {
+	if (!game)
+		return ;
 	if (game->img_wall)
 		mlx_destroy_image(game->mlx, game->img_wall);
 	if (game->img_player)
