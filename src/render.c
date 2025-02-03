@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:28 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/31 07:45:51 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/03 08:58:11 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ void	move_on_window(t_game *game)
 	mlx_string_put(game->mlx, game->win, 15, 20, 0xFFD700, "Mouvements : ");
 	mlx_string_put(game->mlx, game->win, 120, 20, 0xFFFFFF, move_count);
 	free(move_count);
-	ft_printf("DEBUG: Nombre de mouvements affiché sur la fenêtre : %d\n",
+	ft_printf("Nombre de mouvements affiché sur la fenêtre : %d\n",
 		game->moves);
 }

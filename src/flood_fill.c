@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:15:05 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/31 06:45:51 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/03 08:50:29 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**copy_map(char **original, int height)
 	i = 0;
 	while (i < height)
 	{
-		copy[i] = strdup(original[i]);
+		copy[i] = ft_strdup(original[i]);
 		if (!copy[i])
 			error_exit("Erreur : Échec de copie de la map");
 		i++;
@@ -86,15 +86,16 @@ void	get_player_and_collectibles(t_game *game, t_position *player,
 	}
 }
 
-void	validate_flood_result(t_counts *counts)
+void	validate_flood_result(t_counts *counts, t_game *game, char **map_copy)
 {
 	if (counts->collectible > 0 || counts->exit == 0)
 	{
 		ft_printf("Erreur : Aucun chemin valide vers la sortie ");
 		ft_printf("ou tous les collectibles ne sont pas accessibles !\n");
-		error_exit("Erreur : La carte n'est pas jouable !");
+		free_map_copy(map_copy, game->map_height);
+		free_invalid_map(game);
 	}
-	printf("✅ DEBUG: Chemin vers la sortie validé avec succès !\n");
+	ft_printf("✅ DEBUG: Chemin vers la sortie validé avec succès !\n");
 }
 
 void	check_valid_path(t_game *game)
@@ -112,6 +113,6 @@ void	check_valid_path(t_game *game)
 	if (player.x == -1 || player.y == -1)
 		error_exit("Erreur : Joueur introuvable !");
 	flood_fill(map_copy, player.y, player.x, &counts);
-	validate_flood_result(&counts);
+	validate_flood_result(&counts, game, map_copy);
 	free_map_copy(map_copy, game->map_height);
 }

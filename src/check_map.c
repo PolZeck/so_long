@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:06 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/31 09:05:52 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/03 09:35:16 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ void	validate_dimensions(t_game *game)
 		if (!game->map[i])
 		{
 			ft_printf("Error\n: Line %d is NULL!\n", i);
-			error_exit("Error\n: Invalid memory access!");
+			free_invalid_map(game);
 		}
 		line_length = ft_strlen(game->map[i]);
 		if (line_length != game->map_width)
 		{
 			ft_printf("Error\n: Line %d has incorrect length\n", i);
-			error_exit("Error\n: The map is not rectangular!");
+			free_invalid_map(game);
 		}
 		i++;
 	}
@@ -102,12 +102,7 @@ void	validate_counts(t_counts *counts, t_game *game)
 		if (counts->collectible != 1)
 			ft_printf("Error\n	-> Must have a least one 'C', found: %d\n",
 				counts->collectible);
-		game->win = NULL;
-		load_textures(game);
-		destroy_textures(game);
-		free_map(game);
-		free_enemies(game);
-		error_exit("Error\n	-> Incorrect Map !");
+		free_invalid_map(game);
 	}
 }
 

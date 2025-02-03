@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:16:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/31 08:14:12 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/03 08:42:29 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ void	free_map_copy(char **map, int height);
 void	move_enemies(t_game *game);
 void	determine_new_position(t_game *game, t_enemy *enemy,
 			int *new_x, int *new_y);
+void	free_invalid_map(t_game *game);
+
 
 #endif

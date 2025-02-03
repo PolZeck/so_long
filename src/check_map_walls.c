@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:46:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/29 09:08:13 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/03 08:43:21 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,14 @@ void	check_map_walls(t_game *game)
 	while (x < game->map_width)
 	{
 		if (game->map[0][x] != '1' || game->map[game->map_height - 1][x] != '1')
-		{
-			ft_printf("Error\n");
-			exit(1);
-		}
+			free_invalid_map(game);
 		x++;
 	}
 	y = 0;
 	while (y < game->map_height)
 	{
 		if (game->map[y][0] != '1' || game->map[y][game->map_width - 1] != '1')
-		{
-			ft_printf("Error\n");
-			exit(1);
-		}
+			free_invalid_map(game);
 		y++;
 	}
 }

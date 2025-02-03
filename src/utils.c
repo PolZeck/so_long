@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 08:52:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/31 07:47:42 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/03 13:02:00 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,14 @@ void	free_map_copy(char **map, int height)
 		i++;
 	}
 	free(map);
+}
+
+void	free_invalid_map(t_game *game)
+{
+	game->win = NULL;
+	load_textures(game);
+	destroy_textures(game);
+	free_map(game);
+	free_enemies(game);
+	error_exit("Error\n	-> Incorrect Map !");
 }
