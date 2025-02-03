@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:16:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/03 08:42:29 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/03 14:30:08 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_game
 	int		moves;	
 	void	*img_wall;
 	void	*img_player;
-	void	*img_collectible;
+	void	*img_collectible[2];
 	void	*img_exit;
 	void	*img_floor;
 	void	*img_enemy;
@@ -90,6 +90,7 @@ void	move_enemies(t_game *game);
 void	determine_new_position(t_game *game, t_enemy *enemy,
 			int *new_x, int *new_y);
 void	free_invalid_map(t_game *game);
+int		animate_collectibles(t_game *game);
 
 
 #endif

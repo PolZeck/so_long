@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 08:51:47 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/31 09:21:35 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/03 14:29:41 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_game(t_game *game, char *map_file)
 	render_map(game);
 	mlx_key_hook(game->win, handle_movement, game);
 	mlx_hook(game->win, 17, 0, close_game, game);
+	mlx_loop_hook(game->mlx, animate_collectibles, game);
 	mlx_loop(game->mlx);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/31 07:40:11 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/03 13:34:11 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ static int	check_collisions(t_game *game, int new_x, int new_y)
 	if (new_x < 0 || new_x >= game->map_width
 		|| new_y < 0 || new_y >= game->map_height)
 	{
-		ft_printf("⛔ DEBUG: Mouvement hors limites !\n");
+		ft_printf("⛔ Mouvement hors limites !\n");
 		return (0);
 	}
 	if (game->map[new_y][new_x] == '1')
 	{
-		ft_printf("⛔ DEBUG: Collision avec un mur !\n");
+		ft_printf("⛔ Collision avec un mur !\n");
 		return (0);
 	}
 	if (game->map[new_y][new_x] == 'M')
@@ -76,7 +76,7 @@ static void	handle_exit_collectibles(t_game *game, int new_x, int new_y)
 {
 	if (game->map[new_y][new_x] == 'C')
 	{
-		ft_printf("🍎 DEBUG: Collectible ramassé !\n");
+		ft_printf("🍎 Collectible ramassé !\n");
 		game->map[new_y][new_x] = '0';
 	}
 	update_exit_status(game);
@@ -118,7 +118,7 @@ int	handle_movement(int keycode, void *param)
 	if (moved)
 	{
 		game->moves++;
-		ft_printf("\033[H\033[J Joueur déplacé à (%d, %d), Mouvements: %d\n",
+		ft_printf("\033[H\033[JJoueur déplacé à (%d, %d), Mouvements: %d\n",
 			game->player_x, game->player_y, game->moves);
 		move_enemies(game);
 	}
