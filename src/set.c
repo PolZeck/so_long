@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:11 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/04 11:35:48 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/04 13:06:51 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	load_textures(t_game *game)
 
 	game->img_wall
 		= mlx_xpm_file_to_image(game->mlx, "assets/wall.xpm", &w, &h);
-	game->img_player
-		= mlx_xpm_file_to_image(game->mlx, "assets/player.xpm", &w, &h);
+	game->img_player[0] = mlx_xpm_file_to_image(game->mlx, "assets/player.xpm", &w, &h);      // Bas (par défaut)
+	game->img_player[1] = mlx_xpm_file_to_image(game->mlx, "assets/player_l.xpm", &w, &h);    // Gauche
+	game->img_player[2] = mlx_xpm_file_to_image(game->mlx, "assets/player_r.xpm", &w, &h);    // Droite
+	game->img_player[3] = mlx_xpm_file_to_image(game->mlx, "assets/player_b.xpm", &w, &h);    // Haut
 	game->img_exit
 		= mlx_xpm_file_to_image(game->mlx, "assets/exit_closed.xpm", &w, &h);
 	game->img_floor
@@ -31,10 +33,10 @@ void	load_textures(t_game *game)
 		= mlx_xpm_file_to_image(game->mlx, "assets/collectible.xpm", &w, &h);
 	game->img_collectible[1]
 		= mlx_xpm_file_to_image(game->mlx, "assets/collectible2.xpm", &w, &h);
-	if (!game->img_wall || !game->img_player || !game->img_collectible[0]
+	if (!game->img_wall || !game->img_player[0] || !game->img_collectible[0]
 		|| !game->img_exit || !game->img_floor || !game->img_enemy
-		|| !game->img_collectible[1])
-		error_exit("Erreur : Impossible de charger une ou plusieurs textures.");
+		|| !game->img_collectible[1] || !game->img_player[1] || !game->img_player[2] || !game->img_player[3])
+		error_exit("Error\n	->Impossible de charger une ou plusieurs textures.");
 }
 
 void	set_player_position(t_game *game)

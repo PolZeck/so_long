@@ -6,33 +6,41 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/03 13:34:11 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/04 13:03:18 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static int	update_position(int keycode, t_game *game, int *new_x, int *new_y)
+static int update_position(int keycode, t_game *game, int *new_x, int *new_y)
 {
-	if (keycode == 'w' || keycode == 65362)
-		(*new_y)--;
-	else if (keycode == 's' || keycode == 65364)
-		(*new_y)++;
-	else if (keycode == 'a' || keycode == 65361)
-		(*new_x)--;
-	else if (keycode == 'd' || keycode == 65363)
-		(*new_x)++;
-	else if (keycode == 65307)
-	{
-		destroy_textures(game);
-		free_map(game);
-		free_enemies(game);
-		exit(0);
-	}
-	else
-		return (0);
-	return (1);
+    if (keycode == 'w' || keycode == 65362) {
+        (*new_y)--;
+        game->player_dir = 3;  // Haut
+    }
+    else if (keycode == 's' || keycode == 65364) {
+        (*new_y)++;
+        game->player_dir = 0;  // Bas
+    }
+    else if (keycode == 'a' || keycode == 65361) {
+        (*new_x)--;
+        game->player_dir = 1;  // Gauche
+    }
+    else if (keycode == 'd' || keycode == 65363) {
+        (*new_x)++;
+        game->player_dir = 2;  // Droite
+    }
+    else if (keycode == 65307) {
+        destroy_textures(game);
+        free_map(game);
+        free_enemies(game);
+        exit(0);
+    }
+    else
+        return (0);
+    return (1);
 }
+
 
 static int	check_collisions(t_game *game, int new_x, int new_y)
 {

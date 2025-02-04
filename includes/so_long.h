@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:16:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/03 14:30:08 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/04 13:02:49 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ typedef struct s_game
 	int		map_height;
 	int		player_x;
 	int		player_y;
-	int		moves;	
+	int		moves;
+	int     player_dir; 
 	void	*img_wall;
-	void	*img_player;
+	void	*img_player[4];
 	void	*img_collectible[2];
 	void	*img_exit;
 	void	*img_floor;

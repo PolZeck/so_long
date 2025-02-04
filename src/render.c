@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:28 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/04 11:33:41 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/04 13:05:19 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	animate_collectibles(t_game *game)
 	int			y;
 
 	frame_count++;
-	if (frame_count >= 3000)
+	if (frame_count >= 3400)
 	{
 		blink = !blink;
 		frame_count = 0;
@@ -51,7 +51,10 @@ static void	render_tile(t_game *game, char tile, int x, int y)
 	else if (tile == '0')
 		img = game->img_floor;
 	else if (tile == 'P')
-		img = game->img_player;
+	{
+    	mlx_put_image_to_window(game->mlx, game->win, game->img_player[game->player_dir], x * T_SIZE, y * T_SIZE);
+    	return ;
+	}
 	else if (tile == 'C')
 	{
 		mlx_put_image_to_window(game->mlx, game->win, game->img_collectible[0],
