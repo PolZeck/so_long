@@ -6,37 +6,40 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:28 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/03 15:02:45 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/04 11:33:41 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int animate_collectibles(t_game *game)
+int	animate_collectibles(t_game *game)
 {
-    static int blink = 0;
-    static int frame_count = 0; // ✅ Compteur pour ralentir l'animation
-    int x, y;
+	static int	blink = 0;
+	static int	frame_count = 0;
+	int			x;
+	int			y;
 
-    frame_count++;
-    if (frame_count >= 1000)  // ✅ Change d'image toutes les 20 frames
-    {
-        blink = !blink;      // Alterne entre 0 et 1
-        frame_count = 0;     // Réinitialise le compteur
-    }
-
-    for (y = 0; y < game->map_height; y++)
-    {
-        for (x = 0; x < game->map_width; x++)
-        {
-            if (game->map[y][x] == 'C')
-                mlx_put_image_to_window(game->mlx, game->win, game->img_collectible[blink], x * T_SIZE, y * T_SIZE);
-        }
-    }
-    return (0);
+	frame_count++;
+	if (frame_count >= 3000)
+	{
+		blink = !blink;
+		frame_count = 0;
+	}
+	y = 0;
+	while (y < game->map_height)
+	{
+		x = 0;
+		while (x < game->map_width)
+		{
+			if (game->map[y][x] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win,
+					game->img_collectible[blink], x * T_SIZE, y * T_SIZE);
+			x++;
+		}
+		y++;
+	}
+	return (0);
 }
-
-
 
 static void	render_tile(t_game *game, char tile, int x, int y)
 {
@@ -51,10 +54,10 @@ static void	render_tile(t_game *game, char tile, int x, int y)
 		img = game->img_player;
 	else if (tile == 'C')
 	{
-		mlx_put_image_to_window(game->mlx, game->win, game->img_collectible[0], x * T_SIZE, y * T_SIZE);
-		return;
+		mlx_put_image_to_window(game->mlx, game->win, game->img_collectible[0],
+			x * T_SIZE, y * T_SIZE);
+		return ;
 	}
-
 	else if (tile == 'E')
 		img = game->img_exit;
 	else if (tile == 'M')

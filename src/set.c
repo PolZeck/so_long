@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:11 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/03 14:26:38 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/04 11:35:48 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ void	load_textures(t_game *game)
 	game->img_collectible[0]
 		= mlx_xpm_file_to_image(game->mlx, "assets/collectible.xpm", &w, &h);
 	game->img_collectible[1]
-		= mlx_xpm_file_to_image(game->mlx, "assets/collectible_off.xpm", &w, &h);
+		= mlx_xpm_file_to_image(game->mlx, "assets/collectible2.xpm", &w, &h);
 	if (!game->img_wall || !game->img_player || !game->img_collectible[0]
-		|| !game->img_exit || !game->img_floor || !game->img_enemy || !game->img_collectible[1])
+		|| !game->img_exit || !game->img_floor || !game->img_enemy
+		|| !game->img_collectible[1])
 		error_exit("Erreur : Impossible de charger une ou plusieurs textures.");
 }
 
@@ -51,12 +52,12 @@ void	set_player_position(t_game *game)
 			{
 				game->player_x = x;
 				game->player_y = y;
-				ft_printf("✅ DEBUG: Joueur trouvé à -> X: %d, Y: %d\n", x, y);
+				ft_printf("Joueur trouvé à -> X: %d, Y: %d\n", x, y);
 				return ;
 			}
 			x++;
 		}
 		y++;
 	}
-	error_exit("Erreur : Joueur non trouvé dans la carte !");
+	error_exit("Error\n	-> Joueur non trouvé dans la carte !");
 }
