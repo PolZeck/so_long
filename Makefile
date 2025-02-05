@@ -67,11 +67,11 @@ $(NAME_BONUS): $(OBJ_BONUS) $(SUPER_LIBFT_LIB) $(LIBFT_LIB) $(HEADERS_BONUS)
 # 🛠️ Compilation des fichiers source
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -I$(SUPER_LIBFT) -I$(MLX_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -I$(SUPER_LIBFT) -I$(MLX_DIR) -c $< -o $@ -MF $(DEP_DIR)/$*.d
 
 $(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c $(HEADERS_BONUS)
 	@mkdir -p $(OBJ_BONUS_DIR) $(DEP_BONUS_DIR)
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -I$(SUPER_LIBFT) -I$(MLX_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -I$(SUPER_LIBFT) -I$(MLX_DIR) -c $< -o $@ -MF $(DEP_BONUS_DIR)/$*.d
 
 # 🔄 Recompiler si des fichiers sont modifiés
 $(SUPER_LIBFT_LIB): $(wildcard $(SUPER_LIBFT)/*.c)
