@@ -1,4 +1,6 @@
-# 🕹️ Nom des exécutables
+# **************************************************************************** #
+#                                  🎮 SO_LONG 🎮                               #
+# **************************************************************************** #
 NAME = so_long
 NAME_BONUS = so_long_bonus
 
@@ -17,7 +19,7 @@ INCLUDE_DIR = includes
 MLX_DIR = minilibx-linux
 SUPER_LIBFT = super_libft
 LIBFT_DIR = $(SUPER_LIBFT)/libft
-
+ 
 # 📄 Fichiers source
 SRC = $(SRC_DIR)/main.c $(SRC_DIR)/game.c $(SRC_DIR)/map.c $(SRC_DIR)/utils.c \
 	  $(SRC_DIR)/check_map.c $(SRC_DIR)/render.c $(SRC_DIR)/set.c \
