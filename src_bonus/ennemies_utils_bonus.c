@@ -6,11 +6,11 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 06:28:43 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/31 07:38:09 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 07:56:29 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	free_enemies(t_game *game)
 {

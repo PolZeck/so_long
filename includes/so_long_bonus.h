@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:16:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 08:18:40 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 07:56:12 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../super_libft/super_libft.h"
 # include "../super_libft/libft/libft.h"
@@ -23,6 +23,14 @@
 # include <string.h>
 
 # define T_SIZE 32
+
+typedef struct s_enemy
+{
+	int				x;
+	int				y;
+	char			under_enemy;
+	struct s_enemy	*next;
+}				t_enemy;
 
 typedef struct s_game
 {
@@ -37,10 +45,12 @@ typedef struct s_game
 	int     player_dir; 
 	void	*img_wall;
 	void	*img_player[4];
-	void	*img_collectible;
+	void	*img_collectible[2];
 	void	*img_exit;
 	void	*img_floor;
+	void	*img_enemy;
 	void	*img_exit_closed;
+	t_enemy	*enemies;
 }				t_game;
 
 typedef struct s_counts
@@ -78,6 +88,8 @@ void	add_enemy(t_game *game, int x, int y);
 void	free_enemies(t_game *game);
 void	free_map_copy(char **map, int height);
 void	move_enemies(t_game *game);
+void	determine_new_position(t_game *game, t_enemy *enemy,
+			int *new_x, int *new_y);
 void	free_invalid_map(t_game *game);
 int		animate_collectibles(t_game *game);
 

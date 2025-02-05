@@ -6,15 +6,16 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 08:51:47 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 08:13:11 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 07:56:37 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	init_game(t_game *game, char *map_file)
 {
 	game->map = NULL;
+	game->enemies = NULL;
 	game->mlx = mlx_init();
 	game->player_dir = 0;
 	if (!game->mlx)
@@ -30,6 +31,7 @@ void	init_game(t_game *game, char *map_file)
 	render_map(game);
 	mlx_key_hook(game->win, handle_movement, game);
 	mlx_hook(game->win, 17, 0, close_game, game);
+	mlx_loop_hook(game->mlx, animate_collectibles, game);
 	mlx_loop(game->mlx);
 }
 
@@ -38,6 +40,7 @@ int	close_game(t_game *game)
 	ft_printf("👋 Fermeture du jeu !\n");
 	destroy_textures(game);
 	free_map(game);
+	free_enemies(game);
 	exit(0);
 	return (0);
 }

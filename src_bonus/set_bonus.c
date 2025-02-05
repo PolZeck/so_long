@@ -6,17 +6,18 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:11 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 08:20:33 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 07:56:51 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 static void	check_textures(t_game *game)
 {
 	if (!game->img_wall || !game->img_player[0]
-		|| !game->img_collectible || !game->img_exit
-		|| !game->img_floor || !game->img_player[1]
+		|| !game->img_collectible[0] || !game->img_exit
+		|| !game->img_floor || !game->img_enemy
+		|| !game->img_collectible[1] || !game->img_player[1]
 		|| !game->img_player[2] || !game->img_player[3])
 		error_exit("Error\nImpossible de charger une ou plusieurs textures.");
 }
@@ -47,8 +48,12 @@ void	load_textures(t_game *game)
 			"assets/exit_closed.xpm", &w, &h);
 	game->img_floor = mlx_xpm_file_to_image(game->mlx,
 			"assets/floor.xpm", &w, &h);
-	game->img_collectible = mlx_xpm_file_to_image(game->mlx,
+	game->img_enemy = mlx_xpm_file_to_image(game->mlx,
+			"assets/enemy.xpm", &w, &h);
+	game->img_collectible[0] = mlx_xpm_file_to_image(game->mlx,
 			"assets/collectible.xpm", &w, &h);
+	game->img_collectible[1] = mlx_xpm_file_to_image(game->mlx,
+			"assets/collectible2.xpm", &w, &h);
 	check_textures(game);
 }
 

@@ -6,11 +6,11 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 08:51:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 08:04:31 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 07:56:42 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 static void	free_map_partial(char **map, int last_index)
 {
@@ -65,6 +65,7 @@ static void	process_map(int fd, t_game *game)
 		game->map = NULL;
 		free_invalid_map(game);
 	}
+	set_enemies(game);
 	ft_printf("Carte chargée avec succès, hauteur: %d, largeur: %d\n",
 		game->map_height, game->map_width);
 }

@@ -6,11 +6,11 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:51:41 by pledieu           #+#    #+#             */
-/*   Updated: 2025/01/31 09:06:09 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 07:56:30 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 static void	handle_enemy_movement(t_game *game, t_enemy *enemy,
 	int new_x, int new_y)

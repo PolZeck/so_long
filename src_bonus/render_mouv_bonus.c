@@ -6,11 +6,11 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 08:05:17 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 07:56:45 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 static int	update_position(int keycode, t_game *game, int *new_x, int *new_y)
 {
@@ -57,6 +57,7 @@ static int	check_collisions(t_game *game, int new_x, int new_y)
 	if (game->map[new_y][new_x] == 'M')
 	{
 		ft_printf("💀 GAME OVER ! Vous avez été attrapé par un ennemi !\n");
+		free_enemies(game);
 		destroy_textures(game);
 		free_map(game);
 		exit(1);
@@ -96,6 +97,7 @@ static void	handle_exit_collectibles(t_game *game, int new_x, int new_y)
 		}
 		ft_printf("🎉 Victoire ! Vous avez collecté tous les objets ! ");
 		ft_printf("Sortie atteinte en %d déplacements!\n", game->moves + 1);
+		free_enemies(game);
 		destroy_textures(game);
 		free_map(game);
 		exit(0);
@@ -125,6 +127,7 @@ int	handle_movement(int keycode, void *param)
 		game->moves++;
 		ft_printf("\033[H\033[JJoueur déplacé à (%d, %d), Mouvements: %d\n",
 			game->player_x, game->player_y, game->moves);
+		move_enemies(game);
 	}
 	render_map(game);
 	return (0);

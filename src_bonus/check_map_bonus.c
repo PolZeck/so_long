@@ -6,11 +6,11 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:06 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 08:08:02 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 07:56:27 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 /**
  * @brief Counts occurrences of 'P', 'E', and 'C' in the map.
@@ -45,7 +45,7 @@ void	validate_character(t_game *game, t_position pos, t_counts *counts)
 
 	tile = game->map[pos.y][pos.x];
 	if (tile != '1' && tile != '0' && tile != 'P'
-		&& tile != 'C' && tile != 'E')
+		&& tile != 'C' && tile != 'E' && tile != 'M')
 		free_invalid_map(game);
 	count_elements(game, pos, counts);
 }
