@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:16:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 08:18:40 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 10:21:17 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_game
 	int		player_x;
 	int		player_y;
 	int		moves;
-	int     player_dir; 
+	int		player_dir;
 	void	*img_wall;
 	void	*img_player[4];
 	void	*img_collectible;
@@ -72,14 +72,6 @@ void	check_map_walls(t_game *game);
 void	check_valid_path(t_game *game);
 void	check_map_walls(t_game *game);
 void	free_map_copy(char **map, int height);
-void	move_on_window(t_game *game);
-void	set_enemies(t_game *game);
-void	add_enemy(t_game *game, int x, int y);
-void	free_enemies(t_game *game);
-void	free_map_copy(char **map, int height);
-void	move_enemies(t_game *game);
 void	free_invalid_map(t_game *game);
-int		animate_collectibles(t_game *game);
-
 
 #endif
