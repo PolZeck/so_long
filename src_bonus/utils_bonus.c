@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 08:52:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 07:56:57 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 14:27:29 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,6 @@ void	error_exit(const char *message)
 {
 	ft_printf("%s\n", message);
 	exit(1);
-}
-
-void	free_map(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	if (!game->map)
-		return ;
-	while (i < game->map_height)
-	{
-		free(game->map[i]);
-		i++;
-	}
-	free(game->map);
-	game->map = NULL;
 }
 
 int	count_collectibles(t_game *game)
@@ -54,27 +38,4 @@ int	count_collectibles(t_game *game)
 		y++;
 	}
 	return (count);
-}
-
-void	free_map_copy(char **map, int height)
-{
-	int	i;
-
-	i = 0;
-	while (i < height)
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
-
-void	free_invalid_map(t_game *game)
-{
-	game->win = NULL;
-	load_textures(game);
-	destroy_textures(game);
-	free_map(game);
-	free_enemies(game);
-	error_exit("Error\n	-> Incorrect Map !");
 }

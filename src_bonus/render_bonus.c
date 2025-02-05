@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:28 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 07:56:47 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 13:57:54 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	animate_collectibles(t_game *game)
 	int			y;
 
 	frame_count++;
-	if (frame_count >= 3400)
+	if (frame_count >= 8000)
 	{
 		blink = !blink;
 		frame_count = 0;

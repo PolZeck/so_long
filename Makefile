@@ -32,7 +32,7 @@ SRC_BONUS = $(SRC_BONUS_DIR)/main_bonus.c $(SRC_BONUS_DIR)/game_bonus.c \
 			$(SRC_BONUS_DIR)/set_bonus.c $(SRC_BONUS_DIR)/render_mouv_bonus.c \
 			$(SRC_BONUS_DIR)/texture_bonus.c $(SRC_BONUS_DIR)/flood_fill_bonus.c \
 			$(SRC_BONUS_DIR)/check_map_walls_bonus.c $(SRC_BONUS_DIR)/ennemies_bonus.c \
-			$(SRC_BONUS_DIR)/ennemies_utils_bonus.c
+			$(SRC_BONUS_DIR)/ennemies_utils_bonus.c $(SRC_BONUS_DIR)/free_bonus.c
 
 # 🗃️ Fichiers objets et dépendances
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
