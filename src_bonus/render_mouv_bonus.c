@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/10 11:17:51 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/10 13:43:20 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,13 @@ static int	check_collisions(t_game *game, int new_x, int new_y)
 	if (game->map[new_y][new_x] == 'M')
 	{
 		ft_printf("💀 GAME OVER ! Vous avez été attrapé par un ennemi !\n");
-		free_enemies(game);
-		destroy_textures(game);
-		free_map(game);
-		exit(1);
+		close_game(game);
+	}
+	if (game->map[new_y][new_x] == 'E' && count_collectibles(game) > 0)
+	{
+		ft_printf("⛔ Il reste encore des collectibles ! (%d restants)\n",
+			count_collectibles(game));
+		return (0);
 	}
 	return (1);
 }

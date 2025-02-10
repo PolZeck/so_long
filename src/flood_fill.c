@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:15:05 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/03 08:50:29 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/10 13:38:53 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	flood_fill(char **map, int y, int x, t_counts *counts)
 	if (map[y][x] == 'C')
 		counts->collectible--;
 	if (map[y][x] == 'E')
+	{
 		counts->exit = 1;
+		return ;
+	}
 	map[y][x] = 'V';
 	flood_fill(map, y - 1, x, counts);
 	flood_fill(map, y + 1, x, counts);

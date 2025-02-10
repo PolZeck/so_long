@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:32:28 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/10 11:21:09 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/10 13:24:14 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	animate_collectibles(t_game *game)
 	int			y;
 
 	frame_count++;
-	if (frame_count >= 8000)
+	if (frame_count >= 4500)
 	{
 		blink = !blink;
 		frame_count = 0;

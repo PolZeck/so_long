@@ -6,15 +6,15 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:16:03 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/10 08:57:12 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/10 13:23:02 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../super_libft/super_libft.h"
-# include "../super_libft/libft/libft.h"
+# include "../ft_printf/ft_printf.h"
+# include "../ft_printf/libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <stdlib.h>
 # include <unistd.h>

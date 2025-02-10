@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 08:05:17 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/10 13:43:05 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,11 @@ static int	check_collisions(t_game *game, int new_x, int new_y)
 		ft_printf("⛔ Collision avec un mur !\n");
 		return (0);
 	}
-	if (game->map[new_y][new_x] == 'M')
+	if (game->map[new_y][new_x] == 'E' && count_collectibles(game) > 0)
 	{
-		ft_printf("💀 GAME OVER ! Vous avez été attrapé par un ennemi !\n");
-		destroy_textures(game);
-		free_map(game);
-		exit(1);
+		ft_printf("⛔ Il reste encore des collectibles ! (%d restants)\n",
+			count_collectibles(game));
+		return (0);
 	}
 	return (1);
 }
@@ -116,7 +115,8 @@ int	handle_movement(int keycode, void *param)
 	if (!moved || !check_collisions(game, new_x, new_y))
 		return (0);
 	handle_exit_collectibles(game, new_x, new_y);
-	game->map[game->player_y][game->player_x] = '0';
+	if (game->map[game->player_y][game->player_x] != 'E')
+		game->map[game->player_y][game->player_x] = '0';
 	game->player_x = new_x;
 	game->player_y = new_y;
 	game->map[game->player_y][game->player_x] = 'P';

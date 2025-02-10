@@ -6,13 +6,13 @@
 #    By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 14:33:15 by pledieu           #+#    #+#              #
-#    Updated: 2025/01/28 09:06:29 by pledieu          ###   ########lyon.fr    #
+#    Updated: 2025/02/10 13:21:11 by pledieu          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 BLUE   = \033[1;32m
 
-NAME = super_libft.a
+NAME = ft_printf.a
 
 # Compilateur et options
 CC = cc
@@ -30,7 +30,7 @@ SRC =   ft_printf.c\
 OBJ = $(SRC:.c=.o)
 
 # Liste des headers
-HEADERS = super_libft.h
+HEADERS = ft_printf.h
 
 # Chemin vers la libft
 LIBFT_DIR = libft
@@ -43,7 +43,7 @@ $(NAME): $(OBJ) $(LIBFT_A)
 	@ar x $(LIBFT_A)
 	@ar rcs $(NAME) $(OBJ) *.o
 	@rm -f *.o
-	@echo  "$(BLUE)super_libft.a créé avec succès ! ✅"
+	@echo  "$(BLUE)ft_printf.a créé avec succès ! ✅"
 
 # Compile la libft
 $(LIBFT_A):

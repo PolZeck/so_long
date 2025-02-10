@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 08:51:47 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/10 11:16:13 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/10 13:02:23 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	init_game(t_game *game, char *map_file)
 	render_map(game);
 	mlx_key_hook(game->win, handle_movement, game);
 	mlx_hook(game->win, 17, 0, close_game, game);
+	mlx_loop_hook(game->mlx, animate_collectibles, game);
 	mlx_loop(game->mlx);
 }
 
@@ -52,6 +53,7 @@ int	close_game(t_game *game)
 {
 	ft_printf("👋 Fermeture du jeu !\n");
 	destroy_textures(game);
+	free_enemies(game);
 	free_map(game);
 	exit(0);
 	return (0);
