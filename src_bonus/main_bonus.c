@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:20:47 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 13:16:09 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/10 09:31:08 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,17 @@ int	is_valid_extension(const char *filename)
 	return (0);
 }
 
+/**
+ * @brief Entry point of the program, initializes and runs the game.
+ * 
+ * This function checks command-line arguments, validates the map file 
+ * extension, initializes the game, and properly cleans up resources 
+ * before exiting.
+ * 
+ * @param ac Number of command-line arguments.
+ * @param av Array of command-line argument strings.
+ * @return int Returns 0 on success, 1 on error.
+ */
 int	main(int ac, char **av)
 {
 	t_game	game;

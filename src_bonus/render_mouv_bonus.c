@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_mouv.c                                      :+:      :+:    :+:   */
+/*   render_mouv_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:48 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 07:56:45 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/10 11:17:51 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,21 @@ static void	handle_exit_collectibles(t_game *game, int new_x, int new_y)
 	}
 }
 
+/**
+ * @brief Handles player movement based on key inputs.
+ * 
+ * This function processes the movement of the player character in response to 
+ * keyboard inputs. It updates the player's position on the map, checks for 
+ * collisions, handles interactions with collectibles and exits, and increments 
+ * the move count. If the player successfully moves, the map is re-rendered 
+ * and enemy movement is updated.
+ * 
+ * @param keycode The keycode corresponding to the pressed key.
+ * @param param A pointer to the game structure containing
+ * 		the game state and map.
+ * 
+ * @return Returns 0 on successful movement or no movement.
+ */
 int	handle_movement(int keycode, void *param)
 {
 	t_game	*game;

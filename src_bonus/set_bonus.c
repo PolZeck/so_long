@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set.c                                              :+:      :+:    :+:   */
+/*   set_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:33:11 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 07:56:51 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/10 11:21:36 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	check_textures(t_game *game)
 		|| !game->img_floor || !game->img_enemy
 		|| !game->img_collectible[1] || !game->img_player[1]
 		|| !game->img_player[2] || !game->img_player[3])
-		error_exit("Error\nImpossible de charger une ou plusieurs textures.");
+		error_exit("Error\n->Impossible de charger une ou plusieurs textures.");
 }
 
 static void	load_player_textures(t_game *game, int *w, int *h)

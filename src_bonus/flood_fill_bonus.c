@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:15:05 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 07:56:34 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/10 11:15:07 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,22 @@ void	validate_flood_result(t_counts *counts, t_game *game, char **map_copy)
 	ft_printf("✅ DEBUG: Chemin vers la sortie validé avec succès !\n");
 }
 
+/**
+ * @brief Checks if there is a valid path from the player
+ * to all collectibles and the exit.
+ * 
+ * This function ensures that there is a valid path on the map from
+ * the player's starting position to all collectibles and the exit
+ * using a flood fill algorithm. It creates a copy of the map, 
+ * finds the player's position and the number of collectibles
+ * and exits, and then runs the flood fill starting from the
+ * player's position. After the flood fill, it validates whether all 
+ * collectibles and the exit are reachable.
+ * If any of these conditions are not met, the game 
+ * will terminate with an error message.
+ * 
+ * @param game Pointer to the game structure.
+ */
 void	check_valid_path(t_game *game)
 {
 	char		**map_copy;

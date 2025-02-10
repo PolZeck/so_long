@@ -1,17 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ennemies.c                                         :+:      :+:    :+:   */
+/*   ennemies_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:51:41 by pledieu           #+#    #+#             */
-/*   Updated: 2025/02/05 07:56:30 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/02/10 11:22:20 by pledieu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
+/**
+ * @brief Handles the movement of an enemy on
+ * the map and checks for game-over conditions.
+ * 
+ * This function attempts to move an enemy to
+ * a new position on the map. If the new
+ * position matches the player's position,
+ * the game ends, and a game-over message is displayed.
+ * If the new position is valid
+ * (either an empty space '0' or a collectible 'C'), the enemy's
+ * previous position is updated, and the enemy is moved to the new location.
+ * The collectible status of the tile under the enemy is preserved.
+ * 
+ * @param game Pointer to the game structure.
+ * @param enemy Pointer to the enemy structure.
+ * @param new_x The x-coordinate of the new position.
+ * @param new_y The y-coordinate of the new position.
+ */
 static void	handle_enemy_movement(t_game *game, t_enemy *enemy,
 	int new_x, int new_y)
 {
